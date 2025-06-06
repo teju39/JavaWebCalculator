@@ -1,0 +1,39 @@
+pipeline
+{
+    agent any
+    tools
+    {
+        maven "MAVEN_HOME"
+    }
+    stages
+    {
+        stage('Stage 1 - Checkout Code')
+        {
+            steps
+            {
+                git branch:'main',url:'https://github.com/Sada-Siva-Reddy07/JavaWebCalculator.git'
+            }
+        }
+        stage('Stage 2 - Compile Code')
+        {
+            steps
+            {
+                sh "mvn compile"
+            }
+        }
+        stage('Stage 3 - Run Unit tests')
+        {
+            steps
+            {
+                sh "mvn test"
+            }
+        }
+        stage('Stage 4 - Create Build')
+        {
+            steps
+            {
+                sh "mvn package"
+            }
+        }
+    }
+}
